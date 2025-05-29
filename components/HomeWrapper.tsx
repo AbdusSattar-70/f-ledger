@@ -27,7 +27,6 @@ export default function HomeWrapper() {
       <TopNavBar
         isSideBarOpen={isSideBarOpen}
         setIsSideBarOpen={setIsSideBarOpen}
-        user={user}
       />
       <div className="flex-1 flex overflow-hidden">
         <AppSidebar isSideBarOpen={isSideBarOpen} />

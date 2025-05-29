@@ -29,7 +29,7 @@ const EMAIL_LABEL = "Email";
 const PASSWORD_LABEL = "Password";
 const CONFIRM_PASSWORD_LABEL = "Confirm Password";
 const FORGOT_PASSWORD_TEXT = "Forgot password?";
-const OR_CONTINUE_WITH = "Or continue with";
+const OR = "Or";
 const NO_ACCOUNT_TEXT = "Don’t have an account?";
 const HAVE_ACCOUNT_TEXT = "Already have an account?";
 const SIGN_UP_TEXT = "Sign up";
@@ -121,7 +121,7 @@ export default function AuthForm() {
         playsInline
         className="absolute inset-0 h-full w-full object-cover z-0"
       >
-        <source src="/login3.mp4" type="video/mp4" />
+        <source src="/login.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-black/60 z-10" />
       <div className="relative z-20 flex items-center justify-center h-full w-full px-4 py-12">
@@ -235,9 +235,7 @@ export default function AuthForm() {
               </Button>
 
               <div className="relative text-center text-sm my-2">
-                <span className="relative z-10 bg-background px-2">
-                  {OR_CONTINUE_WITH}
-                </span>
+                <span className="relative z-10 bg-background px-2">{OR}</span>
                 <div className="absolute inset-0 top-1/2 border-t border-muted z-0" />
               </div>
 
