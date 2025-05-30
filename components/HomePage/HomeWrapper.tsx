@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useAuth } from "@/components/AuthProvider";
 import { useRouter } from "next/navigation";
-import { AppSidebar } from "@/components/app-sidebar";
-import { TopNavBar } from "@/components/top-navbar";
-import { StatsHeader } from "@/components/StatsHeader";
+import { useAuthStore } from "@/stores/useAuthStore"; // Updated import
+import { TopNavBar } from "./TopNavbar";
+import { AppSidebar } from "./AppSidebar";
+import { StatsHeader } from "./StatsHeader";
+import { SkeletonCard } from "../skeleton-card";
 
 export default function HomeWrapper() {
-  const { user } = useAuth();
+  const user = useAuthStore((state) => state.user); // Zustand state
   const router = useRouter();
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 
@@ -19,7 +20,7 @@ export default function HomeWrapper() {
   }, [user, router]);
 
   if (!user) {
-    return null; // Optionally, add a loading spinner here
+    return <SkeletonCard />;
   }
 
   return (
