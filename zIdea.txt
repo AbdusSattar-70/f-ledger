@@ -1,0 +1,91 @@
+User: {
+    name: "",
+    avatar: "",
+    role: [leader,co_leader,member](leader can do anything and only the budget planner,co_leader can view as leader does and can take expense request,member can view something restricted and can take expense request),
+    email: "",
+    password:"",
+    confirm_password: "",
+}
+
+Total_asset: {
+    petty_cash:"for instant use cash"
+    cash:
+    virtual_cash: bank,bkash,nagad,rocket,can be add more.
+}
+
+Expanse: {
+    who expense make, from where, to where, leader will preassign money to each member to expense and without assigned money to a member can't take actions,other expense categories remain same as YNAB.
+}
+
+// users Collection
+interface User {
+  id: string;              // Document ID
+  name: string;
+  avatar: string | null;
+  email: string;
+  role: "leader" | "co_leader" | "member";
+  groupId: string;         // Reference to groups/{groupId}
+  createdAt: Timestamp;
+}
+
+// groups Collection
+interface Group {
+  id: string;              // Document ID
+  name: string;
+  leaderId: string;        // Reference to users/{userId}
+  memberIds: string[];     // Array of users/{userId}
+  currency: string;
+  createdAt: Timestamp;
+}
+
+// categories Subcollection: /groups/{groupId}/categories/{categoryId}
+interface Category {
+  id: string;              // Document ID
+  name: string;
+  description: string;
+  createdAt: Timestamp;
+}
+
+// assets Subcollection: /groups/{groupId}/assets/{assetId}
+interface Asset {
+  id: string;              // Document ID
+  type: "petty_cash" | "cash" | "virtual_cash";
+  label: string;
+  balance: number;
+  locationDetails?: string;
+  createdAt: Timestamp;
+}
+
+// budgets Subcollection: /groups/{groupId}/budgets/{budgetId}
+interface Budget {
+  id: string;              // Document ID
+  name: string;
+  period: "daily" | "weekly" | "monthly" | "yearly";
+  startDate: Timestamp;
+  endDate: Timestamp;
+  totalAmount: number;
+  categoryAssignments: CategoryAssignment[];
+  createdBy: string;       // Reference to users/{userId}
+}
+
+interface CategoryAssignment {
+  categoryId: string;      // Reference to groups/{groupId}/categories/{categoryId}
+  assignedAmount: number;
+  assignedTo?: string;     // Reference to users/{userId}
+}
+
+// expenses Subcollection: /groups/{groupId}/expenses/{expenseId}
+interface Expense {
+  id: string;              // Document ID
+  title: string;
+  amount: number;
+  categoryId: string;      // Reference to groups/{groupId}/categories/{categoryId}
+  assetId: string;         // Reference to groups/{groupId}/assets/{assetId}
+  spentBy: string;         // Reference to users/{userId}
+  createdBy: string;       // Reference to users/{userId}
+  createdAt: Timestamp;
+  status: "pending" | "approved" | "rejected";
+  approvedBy?: string;     // Reference to users/{userId}
+  approvedAt?: Timestamp;
+  description?: string;
+}

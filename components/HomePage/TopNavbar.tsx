@@ -2,8 +2,8 @@
 
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import LogoIcon from "./icons/logo";
-import { NavUser } from "./nav-user";
+import LogoIcon from "../icons/logo";
+import { NavUser } from "./NavUser";
 
 export function TopNavBar({
   setIsSideBarOpen,

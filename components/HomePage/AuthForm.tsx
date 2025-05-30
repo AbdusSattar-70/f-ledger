@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import GoogleIcon from "./icons/GoogleIcon";
+import GoogleIcon from "../icons/GoogleIcon";
 import { Eye, EyeOff } from "lucide-react";
 
 // Constants for hardcoded text
