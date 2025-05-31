@@ -1,64 +1,57 @@
-import { Separator } from "./ui/separator";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "./ui/breadcrumb";
-import { ShieldPlus } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
-
 export function SkeletonCard() {
-  const isMobile = useIsMobile();
-
   return (
-    <>
-      <div
-        className={`${
-          isMobile ? "-translate-x-full" : "translate-x-0"
-        } fixed top-12 left-0 z-50 w-64 h-[calc(100%-3rem)] transition-transform duration-300 md:translate-x-0 md:static  md:h-full md:z-auto`}
-      >
-        <div className="scrollable w-full h-full p-4 bg-gray-800/50 border-gray-700 backdrop-blur-sm border-r overflow-auto">
-          <div className="flex justify-between items-center mb-2">
-            <h2 className="text-sm font-medium mb-3 uppercase tracking-wider text-gray-500 flex items-center">
-              <ShieldPlus size={16} className="mr-2 text-blue-500" />
-              Upgrades
-            </h2>
+    <div className="flex items-center justify-center h-screen bg-[#1e1f5a] text-white">
+      <div className="relative w-60 h-60">
+        {/* Spinning Outer Border */}
+        <div
+          className="absolute inset-0 rounded-full border-30 border-t-blue-500 border-r-violet-500 border-b-green-500 border-l-yellow-400 animate-spin
+  bg-white/5 backdrop-blur-sm shadow-md shadow-black/10"
+        />
+
+        {/* Centered Logo */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+          <div className="flex items-center space-x-2">
+            <svg
+              className="w-12 h-12 text-blue-500"
+              viewBox="0 0 84 96"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Logo</title>
+
+              {/* Animate polygon stroke */}
+              <polygon
+                points="39 0 0 22 0 67 39 90 78 68 78 23"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="animate-draw-polygon"
+              />
+
+              <text
+                x="39"
+                y="60"
+                textAnchor="middle"
+                fontSize="50"
+                fill="currentColor"
+                fontFamily="monospace"
+              >
+                F
+              </text>
+            </svg>
+
+            <span className="text-xl font-semibold bg-gradient-to-r from-blue-500 to-violet-600 bg-clip-text text-transparent hidden sm:inline">
+              F-Ledger
+            </span>
           </div>
-          <div className="grid grid-cols-1 gap-4"></div>
+
+          <p className="text-xs mt-1 text-gray-300 italic">
+            Spend it <span className="not-italic text-white">like</span> you
+            mean it
+          </p>
         </div>
       </div>
-      <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-        <div className="flex items-center gap-2 px-4">
-          <Separator
-            orientation="vertical"
-            className="mr-2 data-[orientation=vertical]:h-4"
-          />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Building Your Application
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-      </header>
-      <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-        <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-          <div className="bg-muted/50 aspect-video rounded-xl" />
-          <div className="bg-muted/50 aspect-video rounded-xl" />
-          <div className="bg-muted/50 aspect-video rounded-xl" />
-        </div>
-        <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
-      </div>
-    </>
+    </div>
   );
 }

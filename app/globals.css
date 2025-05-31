@@ -165,8 +165,20 @@
   scrollbar-color: rgba(107, 114, 128, 0.4) transparent;
 }
 
-html,
-body {
-  height: 100%;
-  overflow: hidden;
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 360;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 360;
+  }
+}
+
+.animate-draw-polygon {
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  animation: draw 4s ease-in-out infinite;
 }

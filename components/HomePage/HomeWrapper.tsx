@@ -34,7 +34,7 @@ export default function HomeWrapper() {
         <div className="flex-1 flex flex-col overflow-hidden">
           <StatsHeader />
           <main className="flex-1 p-6 flex items-center justify-center scrollable">
-            <p>Main content goes here...</p>
+            <SkeletonCard />
           </main>
         </div>
       </div>
