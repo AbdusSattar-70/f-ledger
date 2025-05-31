@@ -1,4 +1,6 @@
+"use client";
 import { AppSidebar } from "@/components/app-sidebar";
+import { SkeletonCard } from "@/components/skeleton-card";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,8 +15,23 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default function Page() {
+export default function DashboardPage() {
+  const user = useAuthStore((state) => state.user);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/auth-home");
+    }
+  }, [user, router]);
+
+  if (user) {
+    return <SkeletonCard />;
+  }
   return (
     <SidebarProvider>
       <AppSidebar />
