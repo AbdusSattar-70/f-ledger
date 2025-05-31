@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import { ThemeProvider } from "@/components/HomePage/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
-import { AuthProvider } from "@/components/HomePage/AuthProvider";
+import { AuthProvider } from "@/components/providers/auth-provider";
 import Head from "next/head";
 
-const montserrat = Montserrat({
+export const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["100", "300", "500"],
+  display: "swap",
+  weight: ["400", "700"],
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
